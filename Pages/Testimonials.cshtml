@@ -1,0 +1,29 @@
+﻿@page
+@model JSP.Pages.TestimonialsModel
+@{
+}
+<div class="row">
+    <div class="col text-center font-weight-light">
+        <h4>
+            If you would like to leave your own testimonial please send them to mail@jaiscudderplumbing.co.uk. All testimonials are appreciated.
+        </h4>
+    </div>
+</div>
+<div class="row pb-5">
+    <div class="col text-center font-weight-light">
+        <h4>
+            Thank you!
+        </h4>
+    </div>
+</div>
+
+@foreach (var item in Model.Testimonials)
+{
+    <div class="row pt-5">
+        <div class="col float-left">
+            <p>"@item.Testimonial"</p><br />
+            <p class="float-right"><strong>@item.Who</strong></p>
+        </div>
+    </div>
+}
+

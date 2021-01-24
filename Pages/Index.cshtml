@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="font-weight-light pt-5">
+        JAI SCUDDER<br />
+        PLUMBING AND PROPERTY MAINTENANCE
+    </h1>
+    <p class="font-italic pt-5 pb-3">A local plumber that places an emphasis on quality and reputation.</p>
+    <hr class="bg-danger mb-4" />
+    <img src="~/images/homevan292x165_2x.jpg" alt="Jai Scudder Plumbing Van" class="vanImage pb-4" />
+    <div class="row">
+        @foreach (var item in Model.Paragraphs)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        @item.Header
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            @item.Body
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

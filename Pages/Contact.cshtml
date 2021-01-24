@@ -1,0 +1,32 @@
+﻿@page
+@model JSP.Pages.ContactModel
+@{
+}
+
+<h1 class="font-weight-light pt-3 pb-3">
+    CONTACT US
+</h1>
+<hr class="bg-dark mb-5" />
+<div class="mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h5 class="font-weight-light">Please Contact Jai Scudder on:</h5>
+            @foreach (var item in Model.ContactPoints)
+            {
+                <div class="row mb-4">
+                    <div class="col">
+                        <h5 class="font-weight-light">@item.ContactPointType: @item.ContactPoint</h5>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col">
+            <form method="post" id="contactForm">
+                <input class="form-control" id="Name" type="text" />
+                <input class="form-control" id="Email" type="text" />
+                <input class="form-control" id="Phone Number" type="number" />
+                <textarea class="form-control" id="Comment" type="text" />
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@page
+@model ServicesModel
+@{
+    ViewData["Title"] = "Services";
+}
+
+@foreach (var item in Model.Services)
+{
+    <div class="row mt-5 mb-3">
+        <div class="col align-self-center">
+            <strong>@item.Header</strong><br /><br />
+            @item.Body
+        </div>
+        <div class="col">
+            <img src="~/images/services/@item.ImageLocation" class="serviceImage float-right" />
+        </div>
+    </div>
+}
