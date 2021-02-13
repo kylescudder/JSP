@@ -10,19 +10,19 @@ using Microsoft.Extensions.Configuration;
 
 namespace JSP.Pages
 {
-    public class GalleryModel : PageModel
+    public class GalleryViewModel : PageModel
     {
         private readonly IConfiguration _config;
         private readonly IGetData _getData;
-        public GalleryModel(IConfiguration config, IGetData getData)
+        public GalleryViewModel(IConfiguration config, IGetData getData)
         {
             _config = config;
             _getData = getData;
         }
-        public List<GalleryList> Gallerys { get; set; }
+        public List<GalleryViewList> GalleryViews { get; set; }
         public async Task<IActionResult> OnGet()
         {
-            Gallerys = await _getData.GetGallerys();
+            GalleryViews = await _getData.GetGalleryViews(Convert.ToInt16(HttpContext.Request.Query["Id"]));
 
             return Page();
         }

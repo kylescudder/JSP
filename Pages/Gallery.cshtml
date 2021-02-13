@@ -1,4 +1,19 @@
 ﻿@page
 @model JSP.Pages.GalleryModel
 @{
+    ViewData["Title"] = "Gallery";
 }
+<div class="row">
+    @foreach (var item in Model.Gallerys)
+    {
+        <div class="col-4 align-self-center mt-5 mb-3">
+            <a href="GalleryView?Id=@item.GalleryID">
+                @*@item.Body*@
+                <div class="imageContainer cropped">
+                    <img src="~/images/gallery/@item.ImageLocation" class="images" />
+                    <div class="centered text-white text-center headerText"><strong>@item.Title</strong></div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
