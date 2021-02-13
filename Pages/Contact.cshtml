@@ -8,9 +8,14 @@
 </h1>
 <hr class="bg-dark mb-5" />
 <div class="mt-5">
+    <div class="row pb-4">
+        <div class="col text-center">
+            <h5 class="font-weight-light">Please Contact Jai Scudder using the form, or using one of the methods below:
+            </h5>
+        </div>
+    </div>
     <div class="row">
         <div class="col text-center">
-            <h5 class="font-weight-light">Please Contact Jai Scudder on:</h5>
             @foreach (var item in Model.ContactPoints)
             {
                 <div class="row mb-4">
@@ -21,11 +26,20 @@
             }
         </div>
         <div class="col">
-            <form method="post" id="contactForm">
-                <input class="form-control" id="Name" type="text" />
-                <input class="form-control" id="Email" type="text" />
-                <input class="form-control" id="Phone Number" type="number" />
-                <textarea class="form-control" id="Comment" type="text" />
+            <form method="post" id="contactForm" asp-page-handler="Contact">
+                <label>Your name</label>
+                <input class="form-control" id="Name" type="text" asp-for="ContactForm.Name" />
+                <label>Email</label>
+                <input class="form-control" id="Email" type="text" asp-for="ContactForm.Email" />
+                <label>Or phone number</label>
+                <input class="form-control" id="PhoneNumber" type="number" asp-for="ContactForm.PhoneNumber" />
+                <label>Comment</label>
+                <input class="form-control" id="Comment" type="text" asp-for="ContactForm.Comment" />
+                <div class="row pt-2">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
