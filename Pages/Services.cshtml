@@ -3,16 +3,66 @@
 @{
     ViewData["Title"] = "Services";
 }
-
-@foreach (var item in Model.Services)
-{
-    <div class="row mt-5 mb-3">
-        <div class="col align-self-center">
-            <strong>@item.Header</strong><br /><br />
-            @item.Body
-        </div>
-        <div class="col">
-            <img src="~/images/services/@item.ImageLocation" class="serviceImage float-right" />
-        </div>
-    </div>
+@section Scripts {
+<script>
+    //$(document).ready(function () {
+    //    var imageContainer = document.querySelector('.imageContainer');
+    //    imageContainer.addEventListener("mouseover", function () {
+    //        switchView();
+    //    });
+    //    imageContainer.addEventListener("mouseout", function () {
+    //        switchViewBack();
+    //    });
+    //});
+    function switchView(el) {
+        var headerText = el.querySelector('.headerText');
+        var bodyText = el.querySelector('.bodyText');
+        var images = el.querySelector('.images');
+        fadeOut(headerText);
+        fadeIn(bodyText);
+        images.classList.remove('noOpacity');
+        images.classList.add('opacity');
+    }
+    function switchViewBack(el) {
+        console.log("out");
+        var headerText = el.querySelector('.headerText');
+        var bodyText = el.querySelector('.bodyText');
+        var images = el.querySelector('.images');
+        fadeOut(bodyText);
+        fadeIn(headerText);
+        images.classList.remove('opacity');
+        images.classList.add('noOpacity');
+    }
+    function fadeIn(el) {
+        el.classList.remove('fadeOut');
+        setTimeout(function () {
+            el.classList.remove('d-none');
+            el.classList.add('showElement');
+            setTimeout(function () {
+                el.classList.add('fadeIn');
+            }, 100);
+        }, 100);
+    }
+    function fadeOut(el) {
+        el.classList.remove('fadeIn');
+        el.classList.add('fadeOut');
+        setTimeout(function () {
+            el.classList.add('d-none');
+            el.classList.remove('showElement');
+        }, 100);
+    }
+</script>
 }
+<div class="row">
+    @foreach (var item in Model.Services)
+    {
+        <div class="col-4 align-self-center mt-5 mb-3" onmouseenter="return switchView(this);" onmouseleave="return switchViewBack(this);">
+            @*@item.Body*@
+            <div class="imageContainer cropped">
+                <img src="~/images/services/@item.ImageLocation" class="images" />
+                <div class="centered text-white text-center headerText"><strong>@item.Header</strong></div>
+                <div class="centered text-center bodyText d-none">@item.Body</div>
+            </div>
+        </div>
+    }
+</div>
