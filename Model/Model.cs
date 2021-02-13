@@ -30,4 +30,24 @@ namespace JSP.Model
         public string ContactPointType { get; set; }
         public string ContactPoint { get; set; }
     }
+    public class ContactForm
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Comment { get; set; }
+    }
+    public class GalleryList
+    {
+        public int GalleryID { get; set; }
+        public string Title { get; set; }
+        public string ImageLocation { get; set; }
+    }
+    public class GalleryViewList
+    {
+        public int GalleryViewID { get; set; }
+        public string GalleryID { get; set; }
+        public string ImageLocation { get; set; }
+        public int? SortOrder { get; set; }
+    }
 }
