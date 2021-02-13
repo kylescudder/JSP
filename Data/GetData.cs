@@ -1,98 +1,68 @@
 ﻿using JSP.Model;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JSP.Db;
 
 namespace JSP.Data
 {
-    public class GetData
+
+    public class GetData : IGetData
     {
-        public List<ParagraphList> GetParagraphs(string cs)
+        private readonly ISqlDb _dataAccess;
+        public GetData(ISqlDb dataAccess)
         {
-
-            using var con = new MySqlConnection(cs);
-            con.Open();
-
-            string sql = "CALL spGetParagraphs";
-            using var cmd = new MySqlCommand(sql, con);
-            IList<ParagraphList> wsl = new List<ParagraphList>();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var ws = new ParagraphList();
-                ws.ParagraphID = reader.GetInt32("ParagraphID");
-                ws.Header = reader.GetString("Header");
-                ws.Body = reader.GetString("Body");
-                wsl.Add(ws);
-            }
-            reader.Close();
-            return (List<ParagraphList>)wsl;
+            _dataAccess = dataAccess;
         }
-        public List<ServiceList> GetServices(string cs)
+        public async Task<List<ParagraphList>> GetParagraphs()
         {
-
-            using var con = new MySqlConnection(cs);
-            con.Open();
-
-            string sql = "CALL spGetServices";
-            using var cmd = new MySqlCommand(sql, con);
-            IList<ServiceList> wsl = new List<ServiceList>();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var ws = new ServiceList();
-                ws.ServiceID = reader.GetInt32("ServiceID");
-                ws.Header = reader.GetString("Header");
-                ws.Body = reader.GetString("Body");
-                ws.ImageLocation = reader.GetString("ImageLocation");
-                wsl.Add(ws);
-            }
-            reader.Close();
-            return (List<ServiceList>)wsl;
+            var recs = await _dataAccess.LoadData<ParagraphList, dynamic>(
+                "scud97_kssu.spGetParagraphs",
+                new { },
+                "Default");
+            return recs;
         }
-        public List<TestimonialList> GetTestimonials(string cs)
+        public async Task<List<ServiceList>> GetServices()
         {
-
-            using var con = new MySqlConnection(cs);
-            con.Open();
-
-            string sql = "CALL spGetTestimonials";
-            using var cmd = new MySqlCommand(sql, con);
-            IList<TestimonialList> wsl = new List<TestimonialList>();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var ws = new TestimonialList();
-                ws.TestimonialID = reader.GetInt32("TestimonialID");
-                ws.Testimonial = reader.GetString("Testimonial");
-                ws.Who = reader.GetString("Who");
-                wsl.Add(ws);
-            }
-            reader.Close();
-            return (List<TestimonialList>)wsl;
+            var recs = await _dataAccess.LoadData<ServiceList, dynamic>(
+                "scud97_kssu.spGetServices",
+                new { },
+                "Default");
+            return recs;
         }
-        public List<ContactPointList> GetContactPoints(string cs)
+        public async Task<List<TestimonialList>> GetTestimonials()
         {
-
-            using var con = new MySqlConnection(cs);
-            con.Open();
-
-            string sql = "CALL spGetContactPoints";
-            using var cmd = new MySqlCommand(sql, con);
-            IList<ContactPointList> wsl = new List<ContactPointList>();
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var ws = new ContactPointList();
-                ws.ContactPointID = reader.GetInt32("ContactPointID");
-                ws.ContactPointType = reader.GetString("ContactPointType");
-                ws.ContactPoint = reader.GetString("ContactPoint");
-                wsl.Add(ws);
-            }
-            reader.Close();
-            return (List<ContactPointList>)wsl;
+            var recs = await _dataAccess.LoadData<TestimonialList, dynamic>(
+                "scud97_kssu.spGetTestimonials",
+                new { },
+                "Default");
+            return recs;
+        }
+        public async Task<List<ContactPointList>> GetContactPoints()
+        {
+            var recs = await _dataAccess.LoadData<ContactPointList, dynamic>(
+                "scud97_kssu.spGetContactPoints",
+                new { },
+                "Default");
+            return recs;
+        }
+        public async Task<List<GalleryList>> GetGallerys()
+        {
+            var recs = await _dataAccess.LoadData<GalleryList, dynamic>(
+                "scud97_kssu.spGetGallerys",
+                new { },
+                "Default");
+            return recs;
+        }
+        public async Task<List<GalleryViewList>> GetGalleryViews(int ID)
+        {
+            var recs = await _dataAccess.LoadData<GalleryViewList, dynamic>(
+                "scud97_kssu.spGetGalleryViewList",
+                new { ID} ,
+                "Default");
+            return recs;
         }
     }
 }

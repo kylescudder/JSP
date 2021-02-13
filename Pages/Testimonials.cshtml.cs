@@ -15,17 +15,17 @@ namespace JSP.Pages
     {
         private readonly ILogger<TestimonialsModel> _logger;
         private readonly IConfiguration _config;
-        public TestimonialsModel(ILogger<TestimonialsModel> logger, IConfiguration config)
+        private readonly IGetData _getData;
+        public TestimonialsModel(ILogger<TestimonialsModel> logger, IConfiguration config, IGetData getData)
         {
             _logger = logger;
             _config = config;
+            _getData = getData;
         }
-        GetData d = new GetData();
         public List<TestimonialList> Testimonials { get; set; }
-        public ActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
-            string cs = _config.GetConnectionString("Default");
-            Testimonials = d.GetTestimonials(cs);
+            Testimonials = await _getData.GetTestimonials();
 
             return Page();
         }

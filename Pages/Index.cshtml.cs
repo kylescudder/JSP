@@ -15,17 +15,17 @@ namespace JSP.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IConfiguration _config;
-        public IndexModel(ILogger<IndexModel> logger, IConfiguration config)
+        private readonly IGetData _getData;
+        public IndexModel(ILogger<IndexModel> logger, IConfiguration config, IGetData getData)
         {
             _logger = logger;
             _config = config;
+            _getData = getData;
         }
-        GetData d = new GetData();
         public List<ParagraphList> Paragraphs { get; set; }
-        public ActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
-            string cs = _config.GetConnectionString("Default");
-            Paragraphs = d.GetParagraphs(cs);
+            Paragraphs = await _getData.GetParagraphs();
 
             return Page();
 
