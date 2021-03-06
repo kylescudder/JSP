@@ -56,7 +56,7 @@
 <div class="row">
     @foreach (var item in Model.Services)
     {
-        <div class="col align-self-center mt-5 mb-3" onmouseenter="return switchView(this);" onmouseleave="return switchViewBack(this);">
+        <div class="col-md-4 align-self-center mt-5 mb-3" onmouseenter="return switchView(this);" onmouseleave="return switchViewBack(this);">
             @*@item.Body*@
             <div class="imageContainer cropped">
                 <img src="~/images/services/@item.ImageLocation" class="images" />
