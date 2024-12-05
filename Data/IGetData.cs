@@ -6,11 +6,11 @@ namespace JSP.Data
 {
     public interface IGetData
     {
-        Task<List<ContactPointList>> GetContactPoints();
-        Task<List<GalleryList>> GetGallerys();
-        Task<List<GalleryViewList>> GetGalleryViews(int ID);
-        Task<List<ParagraphList>> GetParagraphs();
-        Task<List<ServiceList>> GetServices();
-        Task<List<TestimonialList>> GetTestimonials();
+        Task<List<ContactPoint>> GetContactPoints();
+        Task<List<Gallery>> GetGallerys();
+        Task<List<GalleryView>> GetGalleryViews(int ID);
+        Task<List<Paragraph>> GetParagraphs();
+        Task<List<Service>> GetServices();
+        Task<List<Testimonial>> GetTestimonials();
     }
 }

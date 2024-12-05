@@ -1,8 +1,5 @@
 ﻿using JSP.Model;
-using System.Data.SqlClient;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using JSP.Db;
 
@@ -16,49 +13,49 @@ namespace JSP.Data
         {
             _dataAccess = dataAccess;
         }
-        public async Task<List<ParagraphList>> GetParagraphs()
+        public async Task<List<Paragraph>> GetParagraphs()
         {
-            var recs = await _dataAccess.LoadData<ParagraphList, dynamic>(
+            var recs = await _dataAccess.LoadData<Paragraph, dynamic>(
                 "jaiscudder_jai.spGetParagraphs",
                 new { },
                 "Default");
             return recs;
         }
-        public async Task<List<ServiceList>> GetServices()
+        public async Task<List<Service>> GetServices()
         {
-            var recs = await _dataAccess.LoadData<ServiceList, dynamic>(
+            var recs = await _dataAccess.LoadData<Service, dynamic>(
                 "jaiscudder_jai.spGetServices",
                 new { },
                 "Default");
             return recs;
         }
-        public async Task<List<TestimonialList>> GetTestimonials()
+        public async Task<List<Testimonial>> GetTestimonials()
         {
-            var recs = await _dataAccess.LoadData<TestimonialList, dynamic>(
+            var recs = await _dataAccess.LoadData<Testimonial, dynamic>(
                 "jaiscudder_jai.spGetTestimonials",
                 new { },
                 "Default");
             return recs;
         }
-        public async Task<List<ContactPointList>> GetContactPoints()
+        public async Task<List<ContactPoint>> GetContactPoints()
         {
-            var recs = await _dataAccess.LoadData<ContactPointList, dynamic>(
+            var recs = await _dataAccess.LoadData<ContactPoint, dynamic>(
                 "jaiscudder_jai.spGetContactPoints",
                 new { },
                 "Default");
             return recs;
         }
-        public async Task<List<GalleryList>> GetGallerys()
+        public async Task<List<Gallery>> GetGallerys()
         {
-            var recs = await _dataAccess.LoadData<GalleryList, dynamic>(
+            var recs = await _dataAccess.LoadData<Gallery, dynamic>(
                 "jaiscudder_jai.spGetGallerys",
                 new { },
                 "Default");
             return recs;
         }
-        public async Task<List<GalleryViewList>> GetGalleryViews(int ID)
+        public async Task<List<GalleryView>> GetGalleryViews(int ID)
         {
-            var recs = await _dataAccess.LoadData<GalleryViewList, dynamic>(
+            var recs = await _dataAccess.LoadData<GalleryView, dynamic>(
                 "jaiscudder_jai.spGetGalleryViewList",
                 new { ID} ,
                 "Default");

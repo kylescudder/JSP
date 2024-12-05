@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using JSP.Data;
 using JSP.Model;
@@ -19,7 +17,7 @@ namespace JSP.Pages
             _config = config;
             _getData = getData;
         }
-        public List<GalleryList> Gallerys { get; set; }
+        public List<Gallery> Gallerys { get; set; }
         public async Task<IActionResult> OnGet()
         {
             Gallerys = await _getData.GetGallerys();

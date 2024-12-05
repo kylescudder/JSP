@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using JSP.Data;
 using JSP.Model;
@@ -19,7 +18,7 @@ namespace JSP.Pages
             _config = config;
             _getData = getData;
         }
-        public List<GalleryViewList> GalleryViews { get; set; }
+        public List<GalleryView> GalleryViews { get; set; }
         public async Task<IActionResult> OnGet()
         {
             GalleryViews = await _getData.GetGalleryViews(Convert.ToInt16(HttpContext.Request.Query["Id"]));
