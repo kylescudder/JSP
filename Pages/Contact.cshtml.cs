@@ -22,7 +22,7 @@ namespace JSP.Pages
             _config = config;
             _getData = getData;
         }
-        public List<ContactPointList> ContactPoints { get; set; }
+        public List<ContactPoint> ContactPoints { get; set; }
         public ContactForm ContactForm { get; set; }
         public async Task<IActionResult> OnGet()
         {

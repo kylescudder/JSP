@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using JSP.Data;
 using JSP.Model;
@@ -22,7 +20,7 @@ namespace JSP.Pages
             _config = config;
             _getData = getData;
         }
-        public List<TestimonialList> Testimonials { get; set; }
+        public List<Testimonial> Testimonials { get; set; }
         public async Task<IActionResult> OnGet()
         {
             Testimonials = await _getData.GetTestimonials();
